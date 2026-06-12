@@ -55,6 +55,7 @@ Phase 6: Collaboration & Communication
         Deployment notifications (via webhook to GitHub Actions)
 
 Phase 7: Project Management
+
     GitHub Issues for:
         Bug tracking
         Feature requests
@@ -101,3 +102,25 @@ graph LR
     B -->|Triggers| F
     F -->|Notifies| L
 ```
+
+### Phase 1: Initial Design & Code Generation
+
+
+### Phase 2: Development Environment (All-in-One Codespace)
+
+📊 Usage Instructions
+
+    Create the .devcontainer folder in your repository root
+    Add all the above files to that folder
+    Make scripts executable: chmod +x .devcontainer/*.sh
+    Push to GitHub
+    Launch Codespace from GitHub UI (Code → Codespaces → Create)
+
+The environment will automatically:
+
+    ✅ Install Ollama with pre-loaded models
+    ✅ Configure Terraform with best practices
+    ✅ Set up SDD, Agent Skills, and MCP
+    ✅ Install all required VSCode extensions
+    ✅ Configure Git and GitHub CLI
+    ✅ Forward necessary ports
