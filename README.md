@@ -2,77 +2,105 @@
 
 ## Web site
 
-First draft, init project
+📋 Optimized Project Setup with GitHub Codespaces
 
-- create first mockup with Loveable, 
-- get the code, push to github,
-- get the code in VSCode copilot or Antigravity2/Gemini,
-- install SDD and Agent Skills and MCP, 
-- ollama for dev locally 
-- infra in Vultr cloud provider
-- issues are in Github
-- CICD in Github, with 2 runners
-- 1 local runner connected to Github
-- 1 remote runner in Vultr 
-- Microsoft Teams for users communication and viso conf
-- Microsoft Teams for documentation 
-- Porkbun for managing DNS
-- Terraform will be used for all deployment 
-- Coder.com for provisioning dev env (connected to plugin VSCode)
-- the CICD deploy with terraform the infra and the website
+Phase 1: Initial Design & Code Generation
+
+    Create first mockup with Loveable
+    Export/generate the code from Loveable
+    Push code directly to GitHub repository
+
+Phase 2: Development Environment (All-in-One Codespace)
+
+    Launch GitHub Codespace from repository (pre-configured devcontainer)
+    Automatically includes:
+        VSCode with Copilot OR Antigravity2/Gemini extension
+        SDD (Software Development Dashboard) pre-installed
+        Agent Skills framework pre-configured
+        MCP (Model Context Protocol) ready to use
+        Ollama running locally within the Codespace
+        Terraform CLI pre-installed
+        GitHub CLI for issue management
+    No Coder.com needed - Codespace replaces it entirely
+    No local setup - everything runs in cloud browser
+
+Phase 3: Infrastructure (Vultr Cloud Provider)
+
+    All infrastructure deployed on Vultr cloud provider
+    DNS managed by Porkbun
+    Infrastructure as Code using Terraform
+
+Phase 4: CI/CD Pipeline (Simplified)
+
+    GitHub Actions for CI/CD (single source of truth)
+    Only 1 runner needed (remote runner in Vultr)
+    ❌ Local runner removed (Codespace handles local testing)
+    ✅ 1 remote runner on Vultr for production deployments
+    CI/CD triggers:
+        Push to main branch → Deploy to production
+        Pull request → Deploy to staging environment
+
+Phase 5: Terraform Deployment
+
+    Terraform manages ALL deployments:
+        Vultr infrastructure (VMs, networking, firewall)
+        Website hosting environment
+        Remote runner provisioning
+        DNS records (via Porkbun integration)
+    CI/CD pipeline executes Terraform automatically
+
+Phase 6: Collaboration & Communication
+
+    Microsoft Teams for:
+        User communication and support
+        Video conferences with stakeholders
+        Documentation (Teams Wiki or Files)
+        Deployment notifications (via webhook to GitHub Actions)
+
+Phase 7: Project Management
+    GitHub Issues for:
+        Bug tracking
+        Feature requests
+        Sprint planning
+        Linked directly to pull requests and commits
 
 ## Schema infrastructure
 
 ```mermaid
-graph TD
-    %% Phase 1: Design & Code Generation
-    subgraph "Design & Initial Code"
-        A[Loveable] -->|First mockup & code generation| B[GitHub Repository]
+graph LR
+    subgraph "1. Design"
+        A[Loveable Mockup] -->|Export code| B[GitHub Repo]
     end
 
-    %% Phase 2: Development Environment
-    subgraph "Development Environment"
-        C[VSCode / Antigravity2 + Gemini] -->|Clone & edit code| B
-        D[Coder.com] -->|Provision dev environment| C
-        E[Ollama] -->|Local dev LLM| C
-        F[SDD + Agent Skills + MCP] -->|Installed locally| C
-        B -->|Pull/Push code| C
+    subgraph "2. Development (Codespace)"
+        C[GitHub Codespace] -->|Pre-contained| D[Ollama + SDD + Agents + MCP]
+        C -->|Browser-based VSCode| E[Copilot or Gemini]
+        B -->|Launch from repo| C
+        C -->|Push changes| B
     end
 
-    %% Phase 3: CI/CD & Runners
-    subgraph "CI/CD (GitHub Actions)"
-        G[GitHub Actions CI/CD] -->|Triggers on push| H[Local Runner]
-        G -->|Triggers on push| I[Remote Runner on Vultr]
-        H -->|Runs Terraform & build tasks| J[Terraform Deployment]
-        I -->|Runs Terraform & build tasks| J
+    subgraph "3. CI/CD (GitHub Actions)"
+        F[GitHub Actions] -->|Single pipeline| G[Remote Runner on Vultr]
+        G -->|Executes| H[Terraform]
     end
 
-    %% Phase 4: Infrastructure (Terraform + Vultr)
-    subgraph "Infrastructure (Vultr Cloud)"
-        J -->|Provision & manage| K[Vultr VM / Resources]
-        K -->|Hosts| L[Website]
-        K -->|Hosts| I
+    subgraph "4. Infrastructure (Vultr)"
+        H -->|Provision| I[Vultr Cloud Resources]
+        I -->|Hosts| J[Website]
+        I -->|Hosts| G
+        K[Porkbun DNS] -->|Points to| J
     end
 
-    %% Phase 5: DNS Management
-    subgraph "DNS Management"
-        M[Porkbun] -->|DNS records| L
+    subgraph "5. Collaboration"
+        L[Microsoft Teams] -->|Comm & conf| M[Team Members]
+        L -->|Documentation| N[Teams Wiki/Files]
     end
 
-    %% Phase 6: Communication & Documentation
-    subgraph "Communication & Documentation"
-        N[Microsoft Teams] -->|User communication & viso conf| O[Team Members]
-        N -->|Documentation storage & collaboration| P[Wiki / Teams Files]
+    subgraph "6. Management"
+        O[GitHub Issues] -->|Tracked in| B
+        O -->|Links to| F
     end
 
-    %% Phase 7: Issue Tracking
-    subgraph "Project Management"
-        Q[GitHub Issues] -->|Track bugs & tasks| B
-        Q -->|Linked to CI/CD| G
-    end
-
-    %% Connections between major areas
-    C -->|Submits PR| G
-    G -->|Deploys| L
-    N -.->|Feedback & requirements| Q
+    B -->|Triggers| F
+    F -->|Notifies| L
 ```
