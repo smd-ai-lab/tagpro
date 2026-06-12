@@ -1,0 +1,9 @@
+{
+    "layout": "fr-ch",
+    "swissFrench": {
+        "ctrl": "ctrl",
+        "alt": "alt",
+        "shift": "shift",
+        "altgr": "ctrl+alt"
+    }
+}
