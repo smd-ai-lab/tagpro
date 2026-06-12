@@ -2,10 +2,6 @@
     "name": "All-in-One Dev Environment",
     "image": "mcr.microsoft.com/devcontainers/universal:2",
     "features": {
-        "ghcr.io/devcontainers/features/terraform:1": {
-            "version": "latest"
-        },
-        "ghcr.io/devcontainers/features/github-cli:1": {},
         "ghcr.io/devcontainers/features/python:1": {
             "version": "3.14"
         }
@@ -13,9 +9,6 @@
     "customizations": {
         "vscode": {
             "extensions": [
-                "github.copilot",
-                "github.copilot-chat",
-                "hashicorp.terraform",
                 "ms-vscode-remote.remote-containers",
                 "DavidAnson.vscode-markdownlint"
             ],
@@ -23,6 +16,5 @@
                 "terminal.integrated.defaultProfile.linux": "bash"
             }
         }
-    },
-    "postCreateCommand": "pip install sdd-agent-skills-mcp"
+    }
 }
