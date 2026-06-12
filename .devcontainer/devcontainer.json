@@ -1,0 +1,38 @@
+{
+  "name": "All-in-One Dev Environment",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "features": {
+    "ghcr.io/devcontainers/features/terraform:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {},
+    "ghcr.io/devcontainers/features/ollama:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/python:1": {
+      "version": "3.11"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "github.copilot",
+        "github.copilot-chat",
+        "hashicorp.terraform",
+        "ms-vscode-remote.remote-containers",
+        "antigravity.gemini-vscode"  
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  },
+  "postCreateCommand": "pip install sdd-agent-skills-mcp && ollama pull llama2",
+  "forwardPorts": [11434],
+  "portsAttributes": {
+    "11434": {
+      "label": "Ollama API",
+      "onAutoForward": "notify"
+    }
+  }
+}

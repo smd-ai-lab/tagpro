@@ -21,8 +21,6 @@ Phase 2: Development Environment (All-in-One Codespace)
         Ollama running locally within the Codespace
         Terraform CLI pre-installed
         GitHub CLI for issue management
-    No Coder.com needed - Codespace replaces it entirely
-    No local setup - everything runs in cloud browser
 
 Phase 3: Infrastructure (Vultr Cloud Provider)
 
@@ -34,7 +32,6 @@ Phase 4: CI/CD Pipeline (Simplified)
 
     GitHub Actions for CI/CD (single source of truth)
     Only 1 runner needed (remote runner in Vultr)
-    ❌ Local runner removed (Codespace handles local testing)
     ✅ 1 remote runner on Vultr for production deployments
     CI/CD triggers:
         Push to main branch → Deploy to production
